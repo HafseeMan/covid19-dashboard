@@ -1,3 +1,54 @@
 .App {
   text-align: center;
 }
+
+
+/* BENJAMIN's STYLES */
+/* I know we agreed to use different css files for styling 
+but it is easier to create them in same file just create a section for your style 
+*/
+
+
+/* CSS VARIABLES */
+:root {
+  font-size: 18px;
+  --color-cream: #FFFDD0;
+  --color-teal: #008080;
+}
+
+.main-content {
+  padding: 1em 2em;
+}
+
+.not-found {
+  text-align: center;
+}
+
+.navbar-bg {
+  position: relative;
+  background-color: var(--color-teal);
+  text-align: center;
+  padding: 1rem;
+}
+
+.covid-text{
+  color: var(--color-cream);
+  font-weight: bolder;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+.covid-text span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.location-text {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-cream);
+  text-align: start;
+  padding: 1rem 7.5rem 1rem 1rem
+}
