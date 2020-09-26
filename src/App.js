@@ -12,16 +12,10 @@ class App extends Component {
     return (
       <React.Fragment>
         <Switch>
-          <Route path="/" exact render={(
+          <Route path="/" exact render={() =>
             <div className="row">
-              {/*Title*/}
-              <div className="bg-primary col-12 text-light p-2">
-                <h1 className="text-center text-capitalize">Covid 19 dashboard</h1>
-              </div>
-              {/*search bar*/}
-              <div className="bg-dark col-12 text-light p-2">
-                <p className="text-center ">Search bar</p>
-              </div>
+              {/* NavBar and Search bar */}
+              <NavBar/>
               {/*ranking*/}
               <div className="col-3 bg-light">
                 <h1>Ranking</h1>
@@ -32,9 +26,12 @@ class App extends Component {
                 <h1>statistics</h1>
               </div>
             </div>
-          )} />
+          } />
 
+          {/* This route is for testing features I'm working on */}
           <Route path="/workOn" component={NavBar} />
+          
+          {/* This route is default route for not found pages */}
           <Route path="*" component={NotFound} />
 
         </Switch>
