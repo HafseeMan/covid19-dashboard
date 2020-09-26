@@ -1,20 +1,56 @@
+import PropTypes from 'prop-types'
+
 import React, { Component } from 'react'
 
 export class Search extends Component {
+
+
+    state = {
+        value: ""
+    }
+
+
+    // componentDidMount() {
+    //     console.log(this.props)
+    // }
+
+    handleSubmitForm = (e) => {
+        e.preventDefault()
+        this.props.handleSubmit(this.state.value)
+        this.setState({value: ""})
+    }
+
+    handleChange = (e) => {
+        this.setState({ value: e.target.value })
+    }
+
     render() {
+        const data = this.props.data
         return (
-            <form>
-                <datalist id="countries">
-                    <option value="Nigeria">Nigeria</option>
-                    <option value="United States">United States </option>
-                    <option value="United Kingdom">United Kingdom </option>
-                    <option value="Ghana">Ghana</option>
-                    <option value="South Africa">South Africa</option>
-                </datalist>
-                <input list="countries" name="country" autoComplete="on" type="text" className="search-field" />                
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmitForm}>
+                    <datalist id="countries">
+                        {data.map((datum, index) =>
+                            <option value={datum.country} key={index}>{datum.country}</option>
+                        )}
+                    </datalist>
+                    <input list="countries"
+                        name="country"
+                        autoComplete="on"
+                        type="text"
+                        className="search-field"
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                    />
+                </form>
+            </div>
         )
     }
+}
+
+Search.propTypes = {
+    data: PropTypes.array.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
 }
 
 export default Search
