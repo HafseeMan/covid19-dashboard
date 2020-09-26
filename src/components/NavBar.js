@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Search from './Search'
 import PropTypes from 'prop-types'
 
 function NavBar(props) {
-
-    // useEffect(() => {
-    //     console.log(props)
-    // })
 
     return (
         <div className="container-fluid navbar-bg">
@@ -24,6 +20,8 @@ function NavBar(props) {
 
 NavBar.propTypes = {
     data: PropTypes.array.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    location : PropTypes.string.isRequired,
 }
 
 export default NavBar

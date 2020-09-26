@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
-import NotFound from './components/NotFound'
+import { Route, Switch } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+import NotFound from './components/NotFound';
+import NavBar from './components/NavBar';
+import axios from 'axios';
+import Ranking from './components/Ranking';
+import Stat from './components/Statistics';
 import './App.css';
 import './css/bootstrap.css';
 import './css/bootstrap.min.css';
-import NavBar from './components/NavBar';
-import axios from 'axios';
-import Ranking from './components/Ranking'
-import Stat from './components/Statistics'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 class App extends Component {
 
@@ -38,23 +40,37 @@ class App extends Component {
       <React.Fragment>
         <Switch>
           <Route path="/" exact render={() =>
-            <div className="row">
+            <div>
               {/* NavBar and Search bar */}
-              {this.state.isLoading === false &&
-                <NavBar
-                  data={this.state.allData}
-                  location={this.state.location}
-                  handleSubmit={this.handleSubmit} />
+              {this.state.isLoading ?
+                <div className="App">
+                  <Loader
+                    className="loader"
+                    type="Oval"
+                    color="#008080"
+                    height={150}
+                    width={150}
+                    timeout={3000} />
+                </div> :
+                <div className="row">
+                  <NavBar
+                    data={this.state.allData}
+                    location={this.state.location}
+                    handleSubmit={this.handleSubmit} />
+
+                  <div className="row">
+                    {/*ranking*/}
+                    <Ranking />
+                    {/*statistics*/}
+                    <Stat />
+                  </div>
+                </div>
               }
-              {/*ranking*/}
-              <Ranking />
-              {/*statistics*/}
-              <Stat />
             </div>
           } />
 
-          {/* This route is for testing features I'm working on */}
-          <Route path="/workOn" component={NavBar} />
+          {/* This route is for testing features I'm working on
+          <Route path="/workOn" component={NavBar} /> */}
 
           {/* This route is default route for not found pages */}
           <Route path="*" component={NotFound} />
