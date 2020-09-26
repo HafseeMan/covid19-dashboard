@@ -6,7 +6,8 @@ import './css/bootstrap.css';
 import './css/bootstrap.min.css';
 import NavBar from './components/NavBar';
 import axios from 'axios';
-
+import Ranking from './components/Ranking'
+import Stat from './components/Statistics'
 
 class App extends Component {
 
@@ -46,14 +47,9 @@ class App extends Component {
                   handleSubmit={this.handleSubmit} />
               }
               {/*ranking*/}
-              <div className="col-3 bg-light">
-                <h1>Ranking</h1>
-              </div>
+              <Ranking />
               {/*statistics*/}
-              <div className="col-9 bg-secondary text-dark">
-                <h2>GLOBAL STATISTICS</h2>
-                <h1>statistics</h1>
-              </div>
+              <Stat />
             </div>
           } />
 

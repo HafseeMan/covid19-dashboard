@@ -1,0 +1,29 @@
+Project Name: COVID 19 DASHBOARD --------
+ Project Functionalities:
+1. Search bar, to find and select Country or region to be displayed in the "Statitistics" component.
+2. Data for every country:
+   1. Image	2. Confirmed cases
+   3. Name	4. Deaths
+   5. Recovered cases
+
+
+Components to create for "Statistics" & "Ranking" sections:
+1. Header - underlined text for titles
+2. Ranking
+3. Ranking-table
+4. Ranking-column
+4. Statistics
+5. Display
+
+Steps:
+/1. Create protype UI
+/2. List down colors used
+/3. Create components and link to App.js
+/4. style components and add dummy data
+5. Link/add external data
+6. Add functionalities
+
+
+
+
+*NB: To add bg image, import image from file or css file where it is used in the component file

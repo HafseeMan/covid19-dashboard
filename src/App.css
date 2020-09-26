@@ -1,19 +1,18 @@
-.App {
-  text-align: center;
-}
-
-
-/* BENJAMIN's STYLES */
-/* I know we agreed to use different css files for styling 
-but it is easier to create them in same file just create a section for your style 
-*/
-
-
 /* CSS VARIABLES */
-:root {
+:root{
+  --DarkGreen: rgb(50, 116, 88) ;
+  --Cream: rgba(255, 242, 215, 0.945);
+  --bright: rgb(255, 217, 0);
+  
+  /* Ben's */
   font-size: 18px;
   --color-cream: #FFFDD0;
   --color-teal: #008080;
+}
+
+/* Ben's CSS line 14 - line 64 */
+.App {
+  text-align: center;
 }
 
 .main-content {
@@ -62,4 +61,90 @@ but it is easier to create them in same file just create a section for your styl
 
 datalist {
   width: 15rem;
+}
+
+
+
+/* Hafseeman's CSS Line 68 - Line 150*/
+.dark-green{
+  color: var(--DarkGreen);
+}
+.text-bright{
+  color: var(--bright);
+}
+.bg-cream{
+  background-color: var(--Cream);
+}
+
+.underline{
+  text-decoration: underline;
+}
+.display{
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.display-inner{
+  background-color: rgba(17, 83, 42, 0.767);
+}
+
+
+/*RANKING TABLE*/
+
+
+/* Three column layout */
+.label {
+  display: inline-block;
+  width: 100%;
+  margin: 1px;
+  text-align: left;
+}
+.middle {
+  width: 70%;
+  float: left;
+}
+.side-label {
+  float: right;
+  width: 10%;
+}
+
+/* Place text to the right */
+.right {
+  text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.bar-1 {width: 70%; height: 18px; background-color: #ffc23d;}
+.bar-2 {width: 45%; height: 18px; background-color: #531a9e;}
+.bar-3 {width: 40%; height: 18px; background-color: #93e215;}
+.bar-4 {width: 30%; height: 18px; background-color: #2fb415;}
+.bar-5 {width: 20%; height: 18px; background-color: #4d84fa;}
+.bar-6 {width: 10%; height: 18px; background-color: #df2e9b;}
+
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+  .side, .middle {
+    width: 100%;
+  }
+  /* Hide the right column on small screens */
+  .right {
+    display: none;
+  }
+
 }
