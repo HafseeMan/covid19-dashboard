@@ -5,7 +5,7 @@ import NotFound from './components/NotFound';
 import NavBar from './components/NavBar';
 import axios from 'axios';
 import Ranking from './components/Ranking';
-import Stat from './components/Statistics';
+import Statistics from './components/Statistics';
 import './App.css';
 import './css/bootstrap.css';
 import './css/bootstrap.min.css';
@@ -14,15 +14,29 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 class App extends Component {
 
   state = {
-    global: {},
+    globalStat: {},
+    selectedCountryStat: {},
     allCountriesData: [],
     isLoading: true,
-    location: "World-Wide"
+    location: "Global",
   }
 
   handleSubmit = (location) => {
+    // Todo: Validate location is a valid country from Api call 
+    // before setting state & finding Location.
     this.setState({ location: location })
+    this.findCountry(location);
     console.log("stateAfter Location update : ", this.state)
+  }
+
+  // Search for a country in the list of returned data from api call
+  findCountry = (con3) => {
+    this.state.allCountriesData.forEach((country) => {
+      if (country.Country === con3) {
+        this.setState({ selectedCountryStat: country })
+        //console.log(country);
+      }
+    })
   }
 
   componentDidMount() {
@@ -30,7 +44,7 @@ class App extends Component {
       .then((response) => {
         this.setState({
           allCountriesData: response.data.Countries,
-          global: response.data.Global,
+          globalStat: response.data.Global,
           isLoading: false
         })
         // console.log("Data from api call: ", response)
@@ -41,6 +55,13 @@ class App extends Component {
   }
 
   render() {
+
+    const {
+      globalStat,
+      selectedCountryStat,
+      allCountriesData,
+      location } = this.state;
+
     return (
       <React.Fragment>
         <Switch>
@@ -59,15 +80,27 @@ class App extends Component {
                 </div> :
                 <div className="row">
                   <NavBar
-                    data={this.state.allCountriesData}
-                    location={this.state.location}
+                    data={allCountriesData}
+                    location={location}
                     handleSubmit={this.handleSubmit} />
 
                   <div className="row">
                     {/*ranking*/}
                     <Ranking />
-                    {/*statistics*/}
-                    <Stat />
+                    {/*statistics : TODO: render globalStat by default and specific country if selected*/}
+
+                    {this.state.location === "Global"
+                      ? <Statistics
+                        cases={globalStat.TotalConfirmed}
+                        recovered={globalStat.TotalRecovered}
+                        deaths={globalStat.TotalDeaths} />
+                      : <Statistics
+                        cases={selectedCountryStat.TotalConfirmed}
+                        recovered={selectedCountryStat.TotalRecovered}
+                        deaths={selectedCountryStat.TotalDeaths}
+                      />
+                    }
+
                   </div>
                 </div>
               }
