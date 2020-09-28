@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import axios from 'axios';
 import Ranking from './components/Ranking';
 import Statistics from './components/Statistics';
+import AlertDialog from './components/AlertDialog';
 import './App.css';
 import './css/bootstrap.css';
 import './css/bootstrap.min.css';
@@ -19,24 +20,24 @@ class App extends Component {
     allCountriesData: [],
     isLoading: true,
     location: "Global",
+    alertDialog: { isOpen: false, errorValue: "" },
   }
 
   handleSubmit = (location) => {
-    // Todo: Validate location is a valid country from Api call 
-    // before setting state & finding Location.
-    this.setState({ location: location })
-    this.findCountry(location);
-    console.log("stateAfter Location update : ", this.state)
-  }
-
-  // Search for a country in the list of returned data from api call
-  findCountry = (con3) => {
+    // Check if searched location is a valid country from Api call dataset 
+    // before finding Location data setting state.
     this.state.allCountriesData.forEach((country) => {
-      if (country.Country === con3) {
-        this.setState({ selectedCountryStat: country })
-        //console.log(country);
+      if (country.Country === location) {
+        this.setState({ location: location, selectedCountryStat: country})
+      } else {
+        // TODO: show an alert dialog that "Location cannot be found in database | Invalid location"
+        //this.setState({ alertDialog: { isOpen: true, errorValue: location } })
+        // {alertDialog.isOpen === true && <AlertDialog isOpen={alertDialog.isOpen} location={alertDialog.errorValue} />}
       }
     })
+
+    //this.findCountry(location);
+    console.log("stateAfter Location update : ", this.state)
   }
 
   componentDidMount() {
@@ -60,7 +61,8 @@ class App extends Component {
       globalStat,
       selectedCountryStat,
       allCountriesData,
-      location } = this.state;
+      location,
+      alertDialog } = this.state;
 
     return (
       <React.Fragment>
@@ -100,7 +102,6 @@ class App extends Component {
                         deaths={selectedCountryStat.TotalDeaths}
                       />
                     }
-
                   </div>
                 </div>
               }
