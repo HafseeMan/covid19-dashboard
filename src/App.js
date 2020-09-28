@@ -14,21 +14,26 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 class App extends Component {
 
   state = {
-    allData: [],
+    global: {},
+    allCountriesData: [],
     isLoading: true,
     location: "World-Wide"
   }
 
   handleSubmit = (location) => {
     this.setState({ location: location })
-    //console.log(this.state.location)
+    console.log("stateAfter Location update : ", this.state)
   }
 
   componentDidMount() {
-    axios.get("https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true")
+    axios.get("https://api.covid19api.com/summary")
       .then((response) => {
-        this.setState({ allData: response.data, isLoading: false })
-        console.log("Data from api call: ", response)
+        this.setState({
+          allCountriesData: response.data.Countries,
+          global: response.data.Global,
+          isLoading: false
+        })
+        // console.log("Data from api call: ", response)
         console.log("Data from app state: ", this.state)
       }).catch((error) => {
         console.log("Error fetching and parsing data: ", error)
@@ -50,11 +55,11 @@ class App extends Component {
                     color="#008080"
                     height={150}
                     width={150}
-                    timeout={3000} />
+                    timeout={30000} />
                 </div> :
                 <div className="row">
                   <NavBar
-                    data={this.state.allData}
+                    data={this.state.allCountriesData}
                     location={this.state.location}
                     handleSubmit={this.handleSubmit} />
 

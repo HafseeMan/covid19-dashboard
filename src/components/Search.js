@@ -31,12 +31,13 @@ export class Search extends Component {
                 <form onSubmit={this.handleSubmitForm}>
                     <datalist id="countries">
                         {data.map((datum, index) =>
-                            <option value={datum.country} key={index}>{datum.country}</option>
+                            <option value={datum.Country} key={index}>{datum.Country}</option>
                         )}
                     </datalist>
                     <input list="countries"
                         name="country"
                         autoComplete="on"
+                        isRequired
                         type="text"
                         className="search-field"
                         value={this.state.value}
