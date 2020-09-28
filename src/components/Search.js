@@ -16,7 +16,11 @@ export class Search extends Component {
 
     handleSubmitForm = (e) => {
         e.preventDefault()
-        this.props.handleSubmit(this.state.value)
+        //Validate input 
+        //replace(/\s+/g, '') // to replace white spaces
+        if (!this.state.value.replace(/\s+/g, '') == "") {
+            this.props.handleSubmit(this.state.value)
+        }
         this.setState({value: ""})
     }
 
@@ -37,7 +41,7 @@ export class Search extends Component {
                     <input list="countries"
                         name="country"
                         autoComplete="on"
-                        isRequired
+                        placeholder="Search Country"
                         type="text"
                         className="search-field"
                         value={this.state.value}

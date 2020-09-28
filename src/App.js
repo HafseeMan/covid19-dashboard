@@ -17,7 +17,7 @@ class App extends Component {
     global: {},
     allCountriesData: [],
     isLoading: true,
-    location: "World-Wide"
+    location: "Global"
   }
 
   handleSubmit = (location) => {
