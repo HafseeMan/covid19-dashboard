@@ -88,7 +88,7 @@ class App extends Component {
 
                   <div className="row">
                     {/*ranking*/}
-                    <Ranking />
+                    <Ranking data={allCountriesData}/>
                     {/*statistics : render globalStat by default and specific country if selected*/}
                     {this.state.location === "Global"
                       ? <Statistics
