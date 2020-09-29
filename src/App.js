@@ -28,7 +28,7 @@ class App extends Component {
     // before finding Location data setting state.
     this.state.allCountriesData.forEach((country) => {
       if (country.Country === location) {
-        this.setState({ location: location, selectedCountryStat: country})
+        this.setState({ location: location, selectedCountryStat: country })
       } else {
         // TODO: show an alert dialog that "Location cannot be found in database | Invalid location"
         //this.setState({ alertDialog: { isOpen: true, errorValue: location } })
@@ -71,7 +71,7 @@ class App extends Component {
             <div>
               {/* NavBar and Search bar */}
               {this.state.isLoading ?
-                <div className="App">
+                <div className="">
                   <Loader
                     className="loader"
                     type="Oval"
@@ -80,7 +80,7 @@ class App extends Component {
                     width={150}
                     timeout={30000} />
                 </div> :
-                <div className="row">
+                <div>
                   <NavBar
                     data={allCountriesData}
                     location={location}
@@ -89,8 +89,7 @@ class App extends Component {
                   <div className="row">
                     {/*ranking*/}
                     <Ranking />
-                    {/*statistics : TODO: render globalStat by default and specific country if selected*/}
-
+                    {/*statistics : render globalStat by default and specific country if selected*/}
                     {this.state.location === "Global"
                       ? <Statistics
                         cases={globalStat.TotalConfirmed}

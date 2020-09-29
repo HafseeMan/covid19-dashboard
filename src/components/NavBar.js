@@ -12,7 +12,7 @@ function NavBar(props) {
                 handleSubmit={props.handleSubmit}
             />
             <div className="location-text">
-                <h3>{props.location}</h3>
+                <h5>{props.location}</h5>
             </div>
         </div>
     )

@@ -57,7 +57,7 @@
   right: 0;
   background-color: var(--color-cream);
   text-align: start;
-  padding: 1rem 7.5rem 1rem 1rem
+  padding: .6rem 5.5rem .6rem .6rem
 }
 
 .search-field{
@@ -155,4 +155,17 @@ datalist {
     display: none;
   }
 
+  .location-text h5 {
+    font-size: 1em;
+  }
+
+  .location-text {
+    position: absolute;
+    font-size: 1em;
+    bottom: 0;
+    right: 0;
+    background-color: var(--color-cream);
+    text-align: start;
+    padding: .3em 3.5em .3em .3em
+  }
 }
