@@ -5,16 +5,19 @@ import RankingColumn from './RankingColumn';
 class RankingTable extends Component {
 
     state = {
-        data: []
+        data: [],
     }
 
 
     componentDidMount() {
         console.log("Data before sorting ", this.props.data)
-
         this.sortData();
+        console.log(this.props)
     }
 
+    // componentDidUpdate() {
+    //     console.log("Update state... ", this.state)
+    // }
 
     sortData = () => {
         console.log("Sorting ... ")
@@ -29,7 +32,6 @@ class RankingTable extends Component {
                 <div className="col-10 m-4 bg-white p-2 m-auto text-center">
 
                     <div className="row">
-
                         {/* <RankingColumn name="Americas" rank="bar-1"/>
                         <RankingColumn name="South-East Asia" rank="bar-2"/>
                         <RankingColumn name="Europe" rank="bar-3"/>
@@ -37,7 +39,7 @@ class RankingTable extends Component {
                         <RankingColumn name="Asia" rank="bar-5"/>
                         <RankingColumn name="Western Pacific" rank="bar-6"/> */}
 
-                        {this.state.data.slice(0,6).map((country, index) => (
+                        {this.state.data.slice(0, 6).map((country, index) => (
                             <RankingColumn name={country.Country} rank={`bar-${index + 1}`} key={index} cases={country.TotalConfirmed} />
                         ))}
 
