@@ -6,6 +6,32 @@ class RankingTable extends Component {
 
     state = {
         data: [],
+        continentCases: [
+            {
+                name: "Africa",
+                cases: this.props.africa
+            },
+            {
+                name: "Asia",
+                cases: this.props.asia
+            },
+            {
+                name: "Australia",
+                cases: this.props.austra
+            },
+            {
+                name: "Europe",
+                cases: this.props.europe
+            },
+            {
+                name: "North-America",
+                cases: this.props.nAmerica
+            },
+            {
+                name: "South-America",
+                cases: this.props.sAmerica
+            },
+        ],
     }
 
 
@@ -20,10 +46,11 @@ class RankingTable extends Component {
     // }
 
     sortData = () => {
-        console.log("Sorting ... ")
-        let arr = this.props.data.sort((a, b) => (a.TotalConfirmed < b.TotalConfirmed) ? 1 : -1);
-        this.setState({ data: arr })
-        console.log("Data after sorting: ", arr)
+        // console.log("Sorting ... ")
+        // let arr = this.props.data.sort((a, b) => (a.TotalConfirmed < b.TotalConfirmed) ? 1 : -1);
+        // this.setState({ data: arr })
+        // console.log("Data after sorting: ", arr)
+        this.state.continentCases.sort((a,b) => (a.cases < b.cases) ? 1 : -1)
     }
 
     render() {
@@ -39,8 +66,11 @@ class RankingTable extends Component {
                         <RankingColumn name="Asia" rank="bar-5"/>
                         <RankingColumn name="Western Pacific" rank="bar-6"/> */}
 
-                        {this.state.data.slice(0, 6).map((country, index) => (
+                        {/* {this.state.data.slice(0, 6).map((country, index) => (
                             <RankingColumn name={country.Country} rank={`bar-${index + 1}`} key={index} cases={country.TotalConfirmed} />
+                        ))} */}
+                        {this.state.continentCases.map((country, index) => (
+                            <RankingColumn name={country.name} rank={`bar-${index + 1}`} key={index} cases={country.cases} />
                         ))}
 
                     </div>

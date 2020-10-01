@@ -46,6 +46,12 @@ class App extends Component {
     south_america: [],
     not_found: [],
     map: worldMap,
+    africaCases: 1473511,
+    australiaCases: 29480,
+    asiaCases : 11671559,
+    NAmericaCases : 8618336,
+    SAmericaCases: 8002783,
+    europeCases: 3840081,
   }
 
   handleSubmit = (location) => {
@@ -84,7 +90,6 @@ class App extends Component {
   }
 
   sortCountriesIntoContinent = () => {
-
     this.state.allCountriesData.forEach(country => {
       //console.log(country.Country, " was found in array SA? ", country.Country === south_america.includes("Argentina") )
       if (south_america.includes(country.Country)) {
@@ -124,11 +129,12 @@ class App extends Component {
         }))
       }
     });
+
+    this.sumUpCasesByContinent();
+    
   }
 
-
   findContinent_ofCountry = (country) => {
-
     if (south_america.includes(country)) {
       this.setState({ map: sAmericaImg }); return;
     } else if (australia_oceania.includes(country)) {
@@ -147,6 +153,31 @@ class App extends Component {
     }
   }
 
+  sumUpCasesByContinent = () => {
+    const sumSAmerica = this.state.south_america.reduce((a, { TotalConfirmed }) => a + TotalConfirmed, 0);
+    this.setState({ SAmericaCases: sumSAmerica })
+    //console.log("Total cases: for South America " + sumSAmerica)
+
+    const sumAustra = this.state.australia_oceania.reduce((a, { TotalConfirmed }) => a + TotalConfirmed, 0);
+    this.setState({ australiaCases: sumAustra })
+    // console.log("Total cases: for Australia " + sumAustra)
+
+    const sumNAmerica = this.state.north_america.reduce((a, { TotalConfirmed }) => a + TotalConfirmed, 0);
+    this.setState({ NAmericaCases: sumNAmerica })
+    // console.log("Total cases: for North America " + this.state.north_america.reduce((a, { TotalConfirmed }) => a + TotalConfirmed, 0))
+
+    const sumEurope = this.state.europe.reduce((a, { TotalConfirmed }) => a + TotalConfirmed, 0);
+    this.setState({ europeCases: sumEurope })
+    // console.log("Total cases: for Europe " + sumEurope)
+
+    const sumAsia = this.state.asia.reduce((a, { TotalConfirmed }) => a + TotalConfirmed, 0);
+    this.setState({ asiaCases: sumAsia })
+    // console.log("Total cases: for Asia " + sumAsia)
+
+    const sumAfrica = this.state.africa.reduce((a, { TotalConfirmed }) => a + TotalConfirmed, 0);
+    this.setState({ africaCases: sumAfrica })
+    // console.log("Total cases: for Africa " + sumAfrica)
+  }
 
   // componentDidUpdate(){
   //   console.log("state update... ",this.state)
@@ -159,6 +190,12 @@ class App extends Component {
       selectedCountryStat,
       allCountriesData,
       location,
+      africaCases,
+      NAmericaCases,
+      SAmericaCases,
+      asiaCases,
+      europeCases,
+      australiaCases,
       alertDialog } = this.state;
 
     return (
@@ -186,7 +223,15 @@ class App extends Component {
 
                   <div className="row">
                     {/*ranking*/}
-                    <Ranking data={allCountriesData} />
+                    <Ranking
+                      countries={allCountriesData}
+                      africa={africaCases}
+                      austra={australiaCases}
+                      nAmerica={NAmericaCases}
+                      sAmerica={SAmericaCases}
+                      europe={europeCases}
+                      asia={asiaCases}
+                    />
                     {/*statistics : render globalStat by default and specific country if selected*/}
                     {this.state.location === "Global"
                       ? <Statistics
